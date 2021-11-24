@@ -1,0 +1,11 @@
+# Tidy the location of the symlinks created by bazel
+build --symlink_prefix=bzl-build/ --experimental_no_product_name_out_symlink
+
+# Default to Clang and LLVM
+# build --extra_toolchains=@llvm_toolchain//:cc-toolchain-linux
+# build --incompatible_enable_cc_toolchain_resolution
+
+# Default to optimised
+build --compilation_mode=opt
+
+build --cxxopt='-std=c++17'

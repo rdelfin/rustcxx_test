@@ -1,0 +1,33 @@
+#!/bin/bash
+
+set -euo pipefail
+
+# WayveCode bazel wrapper preamble file
+
+# FOREWORD: this scripts gets executed for EVERY call to bazel, actions run here should be
+# thought of with the utmost respect for people's time. Any millisecond counts and:
+# - network interactions ARE NOT OK
+# - logs should be VERY STRICTLY kept to a minimal level
+
+if [ -z "$1" ]; then
+    echo "ERROR: this file should be executed with the bazel binary as the first argument."
+    exit 1
+fi
+
+_bazel_bin="$1"
+_repo_root="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
+_log_dir="${_repo_root}/bzl-build"
+_bazel_output_base="$(${_bazel_bin} info output_base)"
+
+# create the log dir if it does not exist
+[ ! -d "${_log_dir}" ] && mkdir -p "${_log_dir}"
+
+##################### start of actual wrappers code
+
+### cleanup sandboxfs mountpoint (needed as long as https://github.com/bazelbuild/bazel/issues/12151 is not fixed)
+
+_logfile_sandboxfs="${_log_dir}/bazel_cleanup_sandbox.log"
+date > "${_logfile_sandboxfs}"
+_sandbox_path="${_bazel_output_base}/sandbox/sandboxfs"
+# this will fail if there is nothing to umount, thus we can safely ignore any issue here
+fusermount -u "${_sandbox_path}" &>> "${_logfile_sandboxfs}" || true

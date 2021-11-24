@@ -1,0 +1,102 @@
+"""
+@generated
+cargo-raze generated Bazel file.
+
+DO NOT EDIT! Replaced on runs of cargo-raze
+"""
+
+package(default_visibility = ["//visibility:public"])
+
+licenses([
+    "notice",  # See individual crates for specific licenses
+])
+
+# Aliased targets
+alias(
+    name = "clap",
+    actual = "@raze__clap__2_33_3//:clap",
+    tags = [
+        "cargo-raze",
+        "manual",
+    ],
+)
+
+alias(
+    name = "codespan_reporting",
+    actual = "@raze__codespan_reporting__0_11_1//:codespan_reporting",
+    tags = [
+        "cargo-raze",
+        "manual",
+    ],
+)
+
+alias(
+    name = "cxx",
+    actual = "@raze__cxx__1_0_56//:cxx",
+    tags = [
+        "cargo-raze",
+        "manual",
+    ],
+)
+
+alias(
+    name = "cargo_bin_cxxbridge",
+    actual = "@raze__cxxbridge_cmd__1_0_56//:cargo_bin_cxxbridge",
+    tags = [
+        "cargo-raze",
+        "manual",
+    ],
+)
+
+alias(
+    name = "cxxbridge_cmd",
+    actual = "@raze__cxxbridge_cmd__1_0_56//:cxxbridge_cmd",
+    tags = [
+        "cargo-raze",
+        "manual",
+    ],
+)
+
+alias(
+    name = "proc_macro2",
+    actual = "@raze__proc_macro2__1_0_32//:proc_macro2",
+    tags = [
+        "cargo-raze",
+        "manual",
+    ],
+)
+
+alias(
+    name = "quote",
+    actual = "@raze__quote__1_0_10//:quote",
+    tags = [
+        "cargo-raze",
+        "manual",
+    ],
+)
+
+alias(
+    name = "structopt",
+    actual = "@raze__structopt__0_3_25//:structopt",
+    tags = [
+        "cargo-raze",
+        "manual",
+    ],
+)
+
+alias(
+    name = "syn",
+    actual = "@raze__syn__1_0_81//:syn",
+    tags = [
+        "cargo-raze",
+        "manual",
+    ],
+)
+
+# Export file for Stardoc support
+exports_files(
+    [
+        "crates.bzl",
+    ],
+    visibility = ["//visibility:public"],
+)
